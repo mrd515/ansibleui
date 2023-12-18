@@ -1,0 +1,22 @@
+---
+
+- name: Network Getting Started First Playbook
+  connection: ansible.netcommon.network_cli
+  gather_facts: false
+  hosts: iostest
+  tasks:
+
+    - name: Get config for IOS devices
+      ios_facts:
+        gather_subset: all
+
+    - name: Display the config
+      debug:
+        msg: "The hostname is {{ ansible_net_hostname }} and the OS is {{ ansible_net_version }}"
+
+
+    - name: Create user
+      ios_config:
+        backup: yes
+        lines:
+          - username mrdadmin privi 15 secret Mrd@132%!%
