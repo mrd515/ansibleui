@@ -1,3 +1,13 @@
+Create user for connect Ansible
+# Username and Password
+$username = "Ansible"
+$password = ConvertTo-SecureString "**Js66y5@*Ys^^u2H88WP" -AsPlainText -Force  
+New-LocalUser -Name "$username" -Password $password -FullName "$username"
+Add-LocalGroupMember -Group administrators -Member Ansible
+
+
+
+
 #Upgrading PowerShell and .NET Framework
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $url = "https://raw.githubusercontent.com/jborean93/ansible-windows/master/scripts/Upgrade-PowerShell.ps1"
