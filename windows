@@ -2,7 +2,7 @@ Create user for connect Ansible
 # Username and Password
 $username = "Ansible"
 $password = ConvertTo-SecureString "**Js66y5@*Ys^^u2H88WP" -AsPlainText -Force  
-New-LocalUser -Name "$username" -Password $password -FullName "$username"
+New-LocalUser -Name "$username" -Password $password -FullName "$username" -PasswordNeverExpires
 Add-LocalGroupMember -Group administrators -Member Ansible
 
 
