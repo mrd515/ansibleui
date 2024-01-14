@@ -1,4 +1,4 @@
-Upgrading PowerShell and .NET Framework
+#Upgrading PowerShell and .NET Framework
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $url = "https://raw.githubusercontent.com/jborean93/ansible-windows/master/scripts/Upgrade-PowerShell.ps1"
 $file = "$env:temp\Upgrade-PowerShell.ps1"
