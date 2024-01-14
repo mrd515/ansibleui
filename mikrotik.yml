@@ -2,7 +2,7 @@
 - name: add firewall rule snmp
   connection: network_cli
   gather_facts: false
-  hosts: Apclients
+  hosts: all
   tasks:
 
     - name: add firewall rule snmp
