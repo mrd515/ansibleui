@@ -1,11 +1,11 @@
 ---
-- name: add firewall rule snmp
+- name: add user and changepassword
   connection: network_cli
   gather_facts: false
   hosts: all
   tasks:
 
-    - name: add firewall rule snmp
+    - name: add user and changepassword
       community.routeros.command:
         commands:
           - /user set Hamyar address=192.168.68.151,178.173.128.80/28
