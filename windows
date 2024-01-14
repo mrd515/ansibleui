@@ -32,3 +32,33 @@ $reg_winlogon_path = "HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Winlogo
 Set-ItemProperty -Path $reg_winlogon_path -Name AutoAdminLogon -Value 0
 Remove-ItemProperty -Path $reg_winlogon_path -Name DefaultUserName -ErrorAction SilentlyContinue
 Remove-ItemProperty -Path $reg_winlogon_path -Name DefaultPassword -ErrorAction SilentlyContinue
+
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+$url = "https://raw.githubusercontent.com/jborean93/ansible-windows/master/scripts/Install-WMF3Hotfix.ps1"
+$file = "$env:temp\Install-WMF3Hotfix.ps1"
+
+(New-Object -TypeName System.Net.WebClient).DownloadFile($url, $file)
+powershell.exe -ExecutionPolicy ByPass -File $file -Verbose
+
+
+Step1: Create Certificate
+New-SelfSignedCertificate -DnsName "DNS Name" -CertStoreLocation Cert:\LocalMachine\My
+Step2:
+Whitelist port 5985(winrm-http) and 5986(winrm-https) in the security group of the the windows server.
+Step3: Create HTTPS Listener
+winrm create winrm/config/Listener?Address=*+Transport=HTTPS '@{Hostname="DNS Name"; CertificateThumbprint="ThumbPrint"}'
+Step4:
+Add  new firewall rule for 5986
+netsh advfirewall firewall add rule name="Windows Remote Management (HTTPS-In)" dir=in action=allow protocol=TCP localport=5986
+Step5:
+Check the listener and make sure https listener is there.
+winrm e winrm/config/Listener
+
+Check The Service
+winrm get winrm/config
+Make sure the Basic Auth is set to true, if not then execute below commands.
+Set-Item -Force WSMan:\localhost\Service\auth\Basic $true
+
+
+
+
