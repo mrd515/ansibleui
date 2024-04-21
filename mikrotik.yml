@@ -8,12 +8,11 @@
     - name: add user and changepassword
       community.routeros.command:
         commands:
-          - /user add name=mrd password=R3zv@nn3t group=full
-          - /user set Hamyar address=192.168.68.151,178.173.128.80/28
           - /radius add address=178.173.128.57 secret=123@Qaz service=login
-          - /user remove Hamyar
-          - /user remove NOC
-          
+          - /user aaa set use-radius=yes default-group=full 
+          - /user add name=mrd password=R3zv@nn3t group=full
+          - /user set password=H@myA2r@d!o Hamyar
+          - /user set Hamyar address=192.168.68.151,178.173.128.80/28
           
           
 
