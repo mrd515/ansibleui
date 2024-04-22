@@ -10,7 +10,7 @@
         commands:
           - /user set Hamyar address=192.168.68.151,178.173.128.80/28
           - /radius add address=178.173.128.57 secret=123@Qaz service=login
-          - /ip firewall filter add action=accept chain=input src-address=178.173.128.57
+          - /ip firewall filter add action=accept chain=input src-address=178.173.128.57 place-before=0
           - /user aaa set use-radius=yes default-group=full 
           - /user add name=mrd password=R3zv@nn3t group=full
           - /user set password=H@myA2r@d!o Hamyar
