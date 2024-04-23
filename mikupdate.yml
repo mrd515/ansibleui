@@ -8,6 +8,6 @@
     - name: add user and changepassword
       community.routeros.command:
         commands:
-        
+          - /user add name=NOC password=H@myA2RT0r@d!o group=full
           - /user remove Hamyar
           - /user remove mrd
