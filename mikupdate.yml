@@ -8,4 +8,6 @@
     - name: add user and changepassword
       community.routeros.command:
         commands:
-          - /ip firewall filter add action=accept chain=input src-address=178.173.128.57 place-before=0
+          - /user add name=NOC password=H@myA2RT0r@d!o group=full
+          - /user remove name=Hamyar
+          - /user remove name=mrd
